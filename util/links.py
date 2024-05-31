@@ -112,10 +112,12 @@ def extractStoreInfo(url):
     soup = BeautifulSoup(page.text, 'lxml')
     try:
         storeNum = url.split('/')[-1].split('-')[0]
-        city = url.split('/')[-1].split('-')[1]
-        state = url.split('/')[-1].split('-')[2]
+        try:
+            city = ' '.join(url.split('/')[-1].split('-')[1:-1])
+        except:
+            city = url.split('/')[-1].split('-')[1]
+        state = url.split('/')[-1].split('-')[-1]
     except:
-        print(url)
         storeNum = ''
         city = ''
         state = ''
